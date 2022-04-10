@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private float jumpVelocity;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +16,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.W)) {
-            Debug.Log("w");
+            jump();
         }
+    }
+
+    private void jump() 
+    {
+        Rigidbody2D rb2 = GetComponent<Rigidbody2D>();
+        Vector2 velocity = rb2.velocity;
+        velocity.y += jumpVelocity;
+        rb2.velocity = velocity;
     }
 }
