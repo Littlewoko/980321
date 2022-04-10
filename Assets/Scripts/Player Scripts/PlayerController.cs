@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
 
     private void jump() 
     {
-        rb2 = GetComponent<Rigidbody2D>();
         velocity = rb2.velocity;
         velocity.y += jumpVelocity;
         rb2.velocity = velocity;
