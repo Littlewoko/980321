@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float jumpHeight;
@@ -48,6 +50,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W)) {
             jump();
         }
+
+        Move();
     }
 
     private void FixedUpdate()
@@ -60,6 +64,13 @@ public class PlayerController : MonoBehaviour
         if (groundCheck.NumberOfObjects == 0) return;
         velocity = rb2.velocity;
         velocity.y = jumpVelocity;
+        rb2.velocity = velocity;
+    }
+
+    private void Move()
+    {
+        velocity = rb2.velocity;
+        velocity.x = Input.GetAxis("Horizontal") * runVelocity;
         rb2.velocity = velocity;
     }
 
