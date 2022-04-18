@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpDistance;
     [SerializeField] private float fallGravityMultiplier;
     [SerializeField] private TriggerCount groundCheck;
+    [SerializeField] private int numJumps;
 
     private Rigidbody2D rb2;
     private Vector2 velocity;
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private float runVelocity;
     private float gravityUp;
     private float gravityDown;
+    private int numJumpsFromGround;
+    private bool onGround;
 
     private void Awake()
     {
@@ -41,7 +44,19 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        onGround = (groundCheck.NumberOfObjects > 0);
+    }
+
+    public void HitGround()
+    {
+        onGround = true;
+        numJumpsFromGround = 0;
+    }
+
+    public void LeftGround()
+    {
+        onGround = false;
+        numJumpsFromGround = 1;
     }
 
     // Update is called once per frame
@@ -61,10 +76,16 @@ public class PlayerController : MonoBehaviour
 
     private void jump() 
     {
-        if (groundCheck.NumberOfObjects == 0) return;
+        if ((!onGround) && (numJumpsFromGround >= numJumps)) return;
+
+        numJumpsFromGround++;
+
         velocity = rb2.velocity;
         velocity.y = jumpVelocity;
         rb2.velocity = velocity;
+
+
+        
     }
 
     private void Move()
