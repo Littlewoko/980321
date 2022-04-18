@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         jumpVelocity = (2.0f * jumpHeight) / jumpUpTime;
 
-        gravityUp = (jumpVelocity * jumpUpTime) / Mathf.Abs(Physics2D.gravity.y);
+        gravityUp = (jumpVelocity / jumpUpTime) / Mathf.Abs(Physics2D.gravity.y);
         gravityDown = fallGravityMultiplier * gravityUp;
 
         float fallTime = Mathf.Sqrt((2.0f * jumpHeight) / Mathf.Abs(Physics2D.gravity.y * gravityDown));
