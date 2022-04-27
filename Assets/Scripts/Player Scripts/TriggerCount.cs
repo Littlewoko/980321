@@ -9,8 +9,26 @@ public class TriggerCount : MonoBehaviour
 
     [SerializeField] private UnityEvent onFirstEnterTrigger;
     [SerializeField] private UnityEvent onLastExitTrigger;
+    private Vector2 posVector;
 
     public int NumberOfObjects => colliders.Count;
+
+    public Vector2? GetDirectionToColliders(Transform tr)
+    {
+        if (colliders.Count == 0) return null;
+
+        posVector = new Vector2(0f, 0f);
+
+        for (int i = 0; i < colliders.Count; i++)
+        {
+            posVector.x += (colliders[i].transform.position.x - tr.position.x);
+            posVector.y += (colliders[i].transform.position.y - tr.position.y);
+        }
+
+        posVector.Normalize();
+
+        return posVector;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
