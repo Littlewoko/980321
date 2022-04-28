@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fallGravityMultiplier;
     [SerializeField] private float wallSlideMultiplier;
     [SerializeField] private float wallJumpDistance;
+    [SerializeField] private float maxVelocityMultiplier;
     [SerializeField] private TriggerCount groundCheck;
     [SerializeField] private int numJumps;
     [SerializeField] private TriggerCount wallCheck;
@@ -137,6 +138,10 @@ public class PlayerController : MonoBehaviour
 
         velocity = rb2.velocity;
         velocity.x = Input.GetAxis("Horizontal") * runVelocity;
+
+        velocity.y = Mathf.Clamp(velocity.y,
+            -1f * maxVelocityMultiplier * jumpVelocity,
+            +1f * maxVelocityMultiplier * jumpVelocity);
         rb2.velocity = velocity;
     }
 

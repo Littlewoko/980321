@@ -269,6 +269,7 @@ MonoBehaviour:
   fallGravityMultiplier: 2
   wallSlideMultiplier: 0.5
   wallJumpDistance: 2.5
+  maxVelocityMultiplier: 5
   groundCheck: {fileID: 4394567061500831657}
   numJumps: 2
   wallCheck: {fileID: 3970736233143073328}
