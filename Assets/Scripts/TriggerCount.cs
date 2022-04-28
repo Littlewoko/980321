@@ -7,6 +7,7 @@ public class TriggerCount : MonoBehaviour
 {
     private List<GameObject> colliders = new List<GameObject>();
 
+    [SerializeField] private LayerMask layersToTrigger;
     [SerializeField] private UnityEvent onFirstEnterTrigger;
     [SerializeField] private UnityEvent onLastExitTrigger;
     private Vector2 posVector;
@@ -34,11 +35,16 @@ public class TriggerCount : MonoBehaviour
     {
         if (!colliders.Contains(collision.gameObject))
         {
-            if (colliders.Count == 0)
+            if ((layersToTrigger & (1 << collision.gameObject.layer)) != 0)
             {
-                onFirstEnterTrigger.Invoke();
+                if (colliders.Count == 0)
+                {
+                    onFirstEnterTrigger.Invoke();
+                }
+                colliders.Add(collision.gameObject);
             }
-            colliders.Add(collision.gameObject);
+
+            
         }
     }
 

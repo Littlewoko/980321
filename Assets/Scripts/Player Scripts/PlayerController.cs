@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TriggerCount groundCheck;
     [SerializeField] private int numJumps;
     [SerializeField] private TriggerCount wallCheck;
+    [SerializeField] private LayerMask wallLayer;
 
     private Rigidbody2D rb2;
     private Vector2? dirToWall;
