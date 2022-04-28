@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,24 +9,31 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField] private Transform objective;
     [SerializeField] private float heightFromPlatform;
 
+    public static Action<int> OnScoreChange; 
+
     private int lastLocation = -1;
     private int newLocation;
     private Vector2 pos;
 
+    private int numOfCollections;
+
     private void Start()
     {
+        numOfCollections = -1;
         MoveObjective();
     }
     public void MoveObjective()
     {
-        newLocation = Random.Range(0, platforms.Length);
+        newLocation = UnityEngine.Random.Range(0, platforms.Length);
         while (lastLocation == newLocation)
         {
-            newLocation = Random.Range(0, platforms.Length);
+            newLocation = UnityEngine.Random.Range(0, platforms.Length);
         }
 
         pos = platforms[newLocation].position;
         pos.y += heightFromPlatform;
         objective.position = pos;
+        numOfCollections++;
+        OnScoreChange?.Invoke(numOfCollections);
     }
 }
