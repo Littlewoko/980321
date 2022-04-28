@@ -12,7 +12,7 @@ public class CollectibleBehaviour : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerController>())
         {
             OnCollect?.Invoke();
-
+            gameObject.SetActive(false);
         }
     }
 }
