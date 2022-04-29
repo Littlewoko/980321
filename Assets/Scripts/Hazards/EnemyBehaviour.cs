@@ -8,24 +8,44 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private Transform[] fireLocations;
     [SerializeField] float bulletSpeed;
     [SerializeField] private float fireDelay;
+    [SerializeField] private int numBullets;
+
+    private List<GameObject> bullets = new List<GameObject>();
     private GameObject newBullet;
     private Vector3 bulletVelocity;
+    private int curBullet;
 
     private void Start()
     {
+        InitialisePool();
         InvokeRepeating("FireBullet", fireDelay, fireDelay);
+    }
+
+    private void InitialisePool()
+    {
+        for (int i = 0; i < numBullets; i++)
+        {
+            newBullet = Instantiate(bulletPrefab);
+            newBullet.SetActive(false);
+            bullets.Add(newBullet);
+        }
+
+        curBullet = 0;
     }
 
     private void FireBullet()
     {
         for (int i = 0; i < fireLocations.Length; i++)
         {
-            newBullet = Instantiate(bulletPrefab,
-                fireLocations[i].position,
-                Quaternion.identity);
+            newBullet = bullets[curBullet];
+            newBullet.SetActive(true);
+            newBullet.transform.position = fireLocations[i].position;
 
             bulletVelocity = fireLocations[i].up * bulletSpeed;
             newBullet.GetComponent<Rigidbody2D>().velocity = bulletVelocity;
+
+            curBullet++;
+            if (curBullet >= numBullets) curBullet = 0;
         }
     }
 }
