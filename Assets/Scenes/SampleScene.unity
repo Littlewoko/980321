@@ -309,7 +309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765925668454203402, guid: 2e95a1ab86ed7414e9a92e931b30b406, type: 3}
       propertyPath: OnCollect.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: IncreaseDifficulty
+      value: IncreaseDifficultyViaPorgression
       objectReference: {fileID: 0}
     - target: {fileID: 8765925668454203402, guid: 2e95a1ab86ed7414e9a92e931b30b406, type: 3}
       propertyPath: OnCollect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
