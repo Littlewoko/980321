@@ -16,7 +16,8 @@ public class PlayerKiller : MonoBehaviour
         {
             playerManager.Kill();
             OnHit?.Invoke();
-            if (DisableOnKill) gameObject.SetActive(false);
         }
+
+        if (DisableOnKill) gameObject.SetActive(false);
     }
 }
