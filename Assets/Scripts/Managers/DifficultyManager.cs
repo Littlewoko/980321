@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class DifficultyManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject[] enemies;
+
+    private List<GameObject> inactiveEnemies = new List<GameObject>();
+    private int enemyToActivate;
+
+    private void Awake()
     {
-        
+        inactiveEnemies.AddRange(enemies);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncreaseDifficulty()
     {
-        
+        if (inactiveEnemies.Count == 0) return;
+
+        enemyToActivate = Random.Range(0, inactiveEnemies.Count);
+        inactiveEnemies[enemyToActivate].SetActive(true);
+        inactiveEnemies.RemoveAt(enemyToActivate);
     }
 }
