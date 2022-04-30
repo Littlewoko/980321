@@ -19,6 +19,7 @@ public class ObjectiveManager : MonoBehaviour
 
     private void Start()
     {
+        if (platforms.Length == 0) return;
         numOfCollections = -1;
         MoveObjective();
     }

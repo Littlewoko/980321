@@ -8,6 +8,9 @@ public class PlatformMovement : MonoBehaviour
     [SerializeField] private float yMoveDist;
     [SerializeField] private float xMoveDist;
     [SerializeField] private float movementTime;
+    [SerializeField] private bool xMoveOnStartup;
+    [SerializeField] private bool yMoveOnStartup;
+
     private Transform tr;
     private Sequence ySequence;
     private float yStart;
@@ -26,6 +29,19 @@ public class PlatformMovement : MonoBehaviour
         tr = transform;
         movingX = false;
         movingY = false;
+    }
+
+    private void Start()
+    {
+        if (xMoveOnStartup)
+        {
+            StartXMotion();
+        }
+
+        if (yMoveOnStartup)
+        {
+            StartYMotion();
+        }
     }
 
     public void StartYMotion()

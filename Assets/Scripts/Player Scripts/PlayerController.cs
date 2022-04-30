@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float wallSlideMultiplier;
     [SerializeField] private float wallJumpDistance;
     [SerializeField] private float maxVelocityMultiplier;
+    [SerializeField] private float reactionTime;
     [SerializeField] private TriggerCount groundCheck;
     [SerializeField] private int numJumps;
     [SerializeField] private TriggerCount wallCheck;
     [SerializeField] private LayerMask wallLayer;
+    
 
     private Rigidbody2D rb2;
     private Vector2? dirToWall;
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private float gravityDown;
     private float gravityWall;
     private float wallJumpTime;
+    private float timeLeftGround;
     private int numJumpsFromGround;
     private bool onGround;
     private bool onWall;
@@ -38,6 +41,7 @@ public class PlayerController : MonoBehaviour
         rb2 = GetComponent<Rigidbody2D>();
         velocity = new Vector2();
         wallJumping = false;
+
         tr = transform;
         calculateConstants();
     }
@@ -86,6 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         onGround = false;
         numJumpsFromGround = 1;
+        timeLeftGround = Time.time;
     }
 
     // Update is called once per frame
@@ -105,7 +110,20 @@ public class PlayerController : MonoBehaviour
 
     private void jump() 
     {
-        if ((!onGround) && (numJumpsFromGround >= numJumps)) return;
+
+        if (!onGround)
+        {
+            // Coyote Time
+            if ((Time.time - timeLeftGround) < reactionTime)
+            {
+                numJumpsFromGround = 0;
+            }
+
+            if (numJumpsFromGround >= numJumps)
+            {
+                return;
+            }
+        }
 
         numJumpsFromGround++;
 
