@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
@@ -18,7 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int numJumps;
     [SerializeField] private TriggerCount wallCheck;
     [SerializeField] private LayerMask wallLayer;
-    
+
+    public UnityEvent OnJump;
+    public UnityEvent OnLand;
 
     private Rigidbody2D rb2;
     private Vector2? dirToWall;
@@ -72,18 +75,24 @@ public class PlayerController : MonoBehaviour
     {
         onWall = true;
         numJumpsFromGround = 0;
+
+        OnLand?.Invoke();
     }
 
     public void LeaveWall()
     {
         onWall = false;
-        numJumpsFromGround = 1; 
+        numJumpsFromGround = 1;
+
+        OnJump?.Invoke();
     }
 
     public void HitGround()
     {
         onGround = true;
         numJumpsFromGround = 0;
+
+        OnLand?.Invoke();
     }
 
     public void LeftGround()
@@ -91,6 +100,8 @@ public class PlayerController : MonoBehaviour
         onGround = false;
         numJumpsFromGround = 1;
         timeLeftGround = Time.time;
+
+        OnJump?.Invoke();
     }
 
     // Update is called once per frame
@@ -110,7 +121,6 @@ public class PlayerController : MonoBehaviour
 
     private void jump() 
     {
-
         if (!onGround)
         {
             // Coyote Time
