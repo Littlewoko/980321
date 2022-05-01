@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class LevelBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject[] platforms;
+    [SerializeField] private GameObject[] platformsToActivate;
+    [SerializeField] private GameObject[] platformsToDeactivate;
 
     public void activateLevel()
     {
-        for (int i = 0; i < platforms.Length; i++)
+        for (int i = 0; i < platformsToActivate.Length; i++)
         {
-            platforms[i].SetActive(true);
+            platformsToActivate[i].SetActive(true);
+        }
+    }
+
+    public void deactivateLevel()
+    {
+        for (int i = 0; i < platformsToDeactivate.Length; i++)
+        {
+            platformsToDeactivate[i].SetActive(false);
         }
     }
 }
