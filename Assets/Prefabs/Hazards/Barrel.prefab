@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1436038757869113443}
   - component: {fileID: 1436038757869113444}
-  - component: {fileID: 1436038757869113442}
+  - component: {fileID: 6446260872278421849}
   - component: {fileID: 1436038757869113445}
+  - component: {fileID: 1436038757869113442}
   m_Layer: 7
   m_Name: Barrel
   m_TagString: Untagged
@@ -84,6 +85,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6446260872278421849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436038757869113440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57651802b5760dd4a9e83852e5072f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisableOnKill: 0
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!58 &1436038757869113445
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436038757869113440}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.049999997
 --- !u!50 &1436038757869113442
 Rigidbody2D:
   serializedVersion: 4
@@ -105,19 +138,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &1436038757869113445
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436038757869113440}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.049999997

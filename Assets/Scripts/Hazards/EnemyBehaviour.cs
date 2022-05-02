@@ -9,16 +9,20 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] float bulletSpeed;
     [SerializeField] private float fireDelay;
     [SerializeField] private int numBullets;
+    [SerializeField] private bool shootingBarrels;
 
     private List<GameObject> bullets = new List<GameObject>();
-    private GameObject newBullet;
+    private GameObject newBullet; 
     private Vector3 bulletVelocity;
     private int curBullet;
 
     private void Start()
     {
         InitialisePool();
-        InvokeRepeating("FireBullet", fireDelay, fireDelay);
+        if (!shootingBarrels)
+        {
+            InvokeRepeating("FireBullet", fireDelay, fireDelay);
+        }
     }
 
     private void InitialisePool()
