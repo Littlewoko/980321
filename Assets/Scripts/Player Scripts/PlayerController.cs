@@ -200,4 +200,9 @@ public class PlayerController : MonoBehaviour
             rb2.gravityScale = gravityUp;
         }
     }
+
+    public void activateDoubleJump()
+    {
+        numJumps += 1;
+    }
 }

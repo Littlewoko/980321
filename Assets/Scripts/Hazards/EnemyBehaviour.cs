@@ -21,7 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
         InitialisePool();
         if (!shootingBarrels)
         {
-            InvokeRepeating("FireBullet", fireDelay, fireDelay);
+            InvokeRepeating("FireBullet", 0, fireDelay);
         }
     }
 
@@ -39,6 +39,12 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void FireBullet()
     {
+        if (!gameObject.activeSelf) 
+        { 
+            CancelInvoke(); 
+            return; 
+        }
+
         for (int i = 0; i < fireLocations.Length; i++)
         {
             newBullet = bullets[curBullet];

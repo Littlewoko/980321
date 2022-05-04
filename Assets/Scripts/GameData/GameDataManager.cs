@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -7,6 +8,8 @@ public class GameDataManager : MonoBehaviour
 {
     private string saveFile;
     private GameData gameData;
+
+    public static Action<int> resetScore;
 
     private void Awake()
     {
@@ -42,5 +45,12 @@ public class GameDataManager : MonoBehaviour
     public void setHighScore(int score)
     {
         gameData.highScore = score;
+    }
+
+    public void resetHighScore(int score) 
+    {
+        gameData.highScore = score;
+        writeFile();
+        resetScore?.Invoke(score);
     }
 }

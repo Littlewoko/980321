@@ -10,12 +10,12 @@ public class ScoreUIBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        ObjectiveManager.OnScoreChange += UpdateScore;
+        ScoreManager.OnScoreChange += UpdateScore;
     }
 
     private void OnDisable()
     {
-        ObjectiveManager.OnScoreChange -= UpdateScore;
+        ScoreManager.OnScoreChange -= UpdateScore;
     }
 
     private void Awake()

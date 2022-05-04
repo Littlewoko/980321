@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class PlayerKiller : MonoBehaviour
+public class GameEndScript : MonoBehaviour
 {
-    [SerializeField] private bool DisableOnKill;
-    public UnityEvent OnHit;
     private PlayerManager playerManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -14,10 +11,7 @@ public class PlayerKiller : MonoBehaviour
         playerManager = collision.gameObject.GetComponent<PlayerManager>();
         if (playerManager)
         {
-            playerManager.hit();
-            OnHit?.Invoke();
+            playerManager.Kill();
         }
-
-        if (DisableOnKill) gameObject.SetActive(false);
     }
 }

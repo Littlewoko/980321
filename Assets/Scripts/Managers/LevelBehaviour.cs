@@ -6,6 +6,8 @@ public class LevelBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject[] platformsToActivate;
     [SerializeField] private GameObject[] platformsToDeactivate;
+    [SerializeField] private GameObject[] enemiesToActivate;
+    [SerializeField] private GameObject[] enemiesToDeactivate;
 
     public void activateLevel()
     {
@@ -20,6 +22,22 @@ public class LevelBehaviour : MonoBehaviour
         for (int i = 0; i < platformsToDeactivate.Length; i++)
         {
             platformsToDeactivate[i].SetActive(false);
+        }
+    }
+
+    public void activateEnemies()
+    {
+        for (int i = 0; i < enemiesToActivate.Length; i++)
+        {
+            enemiesToActivate[i].SetActive(true);
+        }
+    }
+
+    public void deactivateEnemies()
+    {
+        for (int i = 0; i < enemiesToDeactivate.Length; i++)
+        {
+            enemiesToDeactivate[i].SetActive(false);
         }
     }
 }

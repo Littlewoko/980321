@@ -9,10 +9,24 @@ public class highScoreUIBehaviour : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI highScoreText;
     [SerializeField] GameDataManager gdm;
-     
+
+    private void OnEnable()
+    {
+        GameDataManager.resetScore += setScoreText;
+    }
+
+    private void OnDisable()
+    {
+        GameDataManager.resetScore -= setScoreText;
+    }
+
     void Awake()
     {
+        setScoreText(gdm.getHighScore());
+    }
 
-        highScoreText.text = "Hgh Score: " + gdm.getHighScore().ToString();
+    private void setScoreText(int score)
+    {
+        highScoreText.text = "High Score: " + score;
     }
 }

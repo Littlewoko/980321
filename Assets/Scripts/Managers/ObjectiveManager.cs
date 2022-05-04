@@ -8,6 +8,7 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField] private Transform[] platforms;
     [SerializeField] private Transform objective;
     [SerializeField] private float heightFromPlatform;
+    [SerializeField] private ScoreManager scoreManager;
 
     public static Action<int> OnScoreChange; 
 
@@ -19,10 +20,11 @@ public class ObjectiveManager : MonoBehaviour
 
     private void Start()
     {
-        if (platforms.Length == 0) return;
-        numOfCollections = -1;
-        MoveObjective();
+        //if (platforms.Length == 0) return;
+        //numOfCollections = -1;
+        //MoveObjective();
     }
+
     public void MoveObjective()
     {
         newLocation = UnityEngine.Random.Range(0, platforms.Length);
